@@ -1,0 +1,26 @@
+# Ignore build output
+/build/
+*.o
+*.obj
+*.exe
+*.out
+
+# Ignore CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Ignore VSCode settings (optional)
+.vscode/
+
+# Ignore user-generated files
+*.log
+*.tmp
+
+# Ignore system files (Windows)
+Thumbs.db
+Desktop.ini
+
+# Ignore any temporary txt files (if needed)
+*.txt

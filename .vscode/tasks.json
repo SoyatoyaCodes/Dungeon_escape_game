@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with CMake and Ninja",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-G",
+                "Ninja",
+                "-S",
+                ".",
+                "-B",
+                "build"
+            ],
+            "group": "build",
+            "problemMatcher": [],
+            "detail": "Runs cmake to generate Ninja build files"
+        },
+        {
+            "label": "Run Ninja Build",
+            "type": "shell",
+            "command": "ninja",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "group": "build",
+            "dependsOn": [
+                "Build with CMake and Ninja"
+            ],
+            "problemMatcher": [],
+            "detail": "Builds the project using Ninja"
+        }
+    ]
+}
