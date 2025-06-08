@@ -5,6 +5,8 @@
 #include "../headers/enemy.hpp"
 #include "../headers/treasure.hpp"
 #include <iostream>
+#include <stdexcept>  // for runtime_error
+#include <limits>     // for numeric_limits
 using namespace std;
 
 //for a clean build
@@ -54,37 +56,58 @@ void displayGrid(const vector<pair<int, int>>& queens, int unsafeRow = -1, int u
     }
 }
 
+// void room2_darkCorridorFootstepPuzzle(Player& player) {
+//     cout << "\n You enter the DARK CORRIDOR. Strange tiles glow faintly...\n";
+//     cout << " Step on correct tiles only! It's a 4x4 grid, each step must be N-Queen safe!\n";
+//     cout << "4 steps to cross safely...\n";
+
+//     vector<pair<int, int>> queens;
+//     int steps = 4;
+
+
 void room2_darkCorridorFootstepPuzzle(Player& player) {
-    cout << "\n You enter the DARK CORRIDOR. Strange tiles glow faintly...\n";
+    cout << "\n now..... inside the DARK CORRIDOR..... Strange tiles glow faintly...\n";
     cout << " Step on correct tiles only! It's a 4x4 grid, each step must be N-Queen safe!\n";
     cout << "4 steps to cross safely...\n";
 
     vector<pair<int, int>> queens;
     int steps = 4;
 
-
     while (steps--) {
         displayGrid(queens);
 
         int row, col;
         cout << "\nPick a tile (row [0-3], col [0-3]): MAKE SURE ITS IN 2 3 FORMAT ";
-        cin >> row >> col;
 
-        if (row < 0 || row >= 4 || col < 0 || col >= 4) {
-            cout << " Invalid input! You trip and lose 5 HP.\n";
+        try {
+            cin >> row >> col;
+            if (cin.fail()) {
+                cin.clear(); // clear error flags
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard bad input
+                throw runtime_error("Invalid input format. Please enter two numbers separated by space.");
+            }
+
+            if (row < 0 || row >= 4 || col < 0 || col >= 4) {
+                cout << " Invalid input! You trip and lose 5 HP.\n";
+                player.takeDamage(5);
+                continue;
+            }
+
+            if (!isSafe(queens, row, col)) {
+                cout << " Trap triggered! That's not a safe step. -5 HP.\n";
+                player.takeDamage(5);
+                displayGrid(queens, row, col); // show X where they messed up
+            }
+            else {
+                cout << " Step safe. You proceed forward.\n";
+                queens.push_back({ row, col });
+                displayGrid(queens);
+            }
+        }
+        catch (const exception& e) {
+            cout << " Error: " << e.what() << " You trip and lose 5 HP.\n";
             player.takeDamage(5);
             continue;
-        }
-
-        if (!isSafe(queens, row, col)) {
-            cout << " Trap triggered! That's not a safe step. -5 HP.\n";
-            player.takeDamage(5);
-            displayGrid(queens, row, col); // show X where they messed up
-        }
-        else {
-            cout << " Step safe. You proceed forward.\n";
-            queens.push_back({ row, col });
-            displayGrid(queens);
         }
 
         cout << " Current Health: " << player.getHealth() << "\n";
@@ -96,6 +119,40 @@ void room2_darkCorridorFootstepPuzzle(Player& player) {
 
     cout << "\n You made it across the dark corridor using your mind!\n";
 }
+
+//     while (steps--) {
+//         displayGrid(queens);
+
+//         int row, col;
+//         cout << "\nPick a tile (row [0-3], col [0-3]): MAKE SURE ITS IN 2 3 FORMAT ";
+//         cin >> row >> col;
+
+//         if (row < 0 || row >= 4 || col < 0 || col >= 4) {
+//             cout << " Invalid input! You trip and lose 5 HP.\n";
+//             player.takeDamage(5);
+//             continue;
+//         }
+
+//         if (!isSafe(queens, row, col)) {
+//             cout << " Trap triggered! That's not a safe step. -5 HP.\n";
+//             player.takeDamage(5);
+//             displayGrid(queens, row, col); // show X where they messed up
+//         }
+//         else {
+//             cout << " Step safe. You proceed forward.\n";
+//             queens.push_back({ row, col });
+//             displayGrid(queens);
+//         }
+
+//         cout << " Current Health: " << player.getHealth() << "\n";
+//         if (!player.isAlive()) {
+//             cout << "\n You collapse from injuries in the corridor...\n";
+//             return;
+//         }
+//     }
+
+//     cout << "\n You made it across the dark corridor using your mind!\n";
+// }
 
 
 
