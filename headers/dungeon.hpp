@@ -5,6 +5,7 @@
 #include "player.hpp"
 #include "stack.hpp"
 
+//keeps track of current room you are in plus backtrack
 class Dungeon {
 private:
     Room* head;

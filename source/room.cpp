@@ -24,7 +24,7 @@ Enemy& Room::getNextEnemy() {
 
 void Room::removeDefeatedEnemy() {
     if (!enemies.isEmpty()) {
-        enemies.dequeue();
+        enemies.dequeue(); //first enemy defeated so we simply can dequeue it
     }
 }
 

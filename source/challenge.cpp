@@ -7,6 +7,7 @@ Challenge::Challenge(string q, string a) : question(q), answer(a), solved(false)
 //prompts the question and checks if the answer is correct
 
 bool Challenge::askQuestion() {
+
     cout << question << endl;
     string userAnswer;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');

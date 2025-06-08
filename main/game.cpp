@@ -4,7 +4,6 @@
 #include "../headers/challenge.hpp"
 #include "../headers/enemy.hpp"
 #include "../headers/treasure.hpp"
-#include "../headers/dungeon.hpp"
 #include <iostream>
 using namespace std;
 
@@ -14,9 +13,10 @@ using namespace std;
 //to prevent errors if a file does not exist
 //cmake ..
 //ninja
+//./game.exe
+//to run : cd build && ninja && 
 
 
-//to run : cd build && ninja && ./game.exe
 #include <vector>
 #include <algorithm>
 #include <ctime>
@@ -215,7 +215,7 @@ int main() {
     cout << " WELCOME TO DRAGON'S LAIR \n";
 
     showInstructions();
-    cout << "LESTS START THE GAME!!" << endl;
+    cout << "LETS START THE GAME!!" << endl;
 
 
 

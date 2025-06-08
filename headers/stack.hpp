@@ -10,9 +10,7 @@ private:
         Node* next;
         Node(Room* r) : room(r), next(nullptr) {}
     };
-
     Node* topNode;
-
 public:
     Stack();
     ~Stack();
