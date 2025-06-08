@@ -22,7 +22,7 @@ public:
     void fight(Enemy& enemy);
     void takeDamage(int damage);
     bool isAlive() const;
-
+    string getname() const;
     void collectTreasure(const Treasure& treasure);
     void showInventory() const;
     bool hasItem(const std::string& itemName) const;

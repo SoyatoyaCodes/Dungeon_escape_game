@@ -96,3 +96,7 @@ Room* Dungeon::getCurrentRoom() const {
 Stack& Dungeon::getRoomStack() {
     return roomStack;
 }
+
+void Dungeon::setEscaped(bool status) {
+    escaped = status;
+}

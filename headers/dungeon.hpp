@@ -12,6 +12,8 @@ private:
     Room* tail;
     Room* currentRoom;
     Stack roomStack; // Stack for backtracking
+    bool escaped = false;
+
 
 public:
     Dungeon();
@@ -23,6 +25,7 @@ public:
     bool isEscaped() const;
     Room* getCurrentRoom() const;
     Stack& getRoomStack();
+    void setEscaped(bool status);
 };
 
 #endif

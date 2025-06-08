@@ -196,3 +196,6 @@ void Player::fight(Enemy& enemy) {
         }
     }
 }
+string Player::getname() const {
+    return name;
+}

@@ -1,3 +1,6 @@
 {
-    "cmake.buildType": "Debug"
+    "cmake.buildType": "Debug",
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }
